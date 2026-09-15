@@ -17,7 +17,7 @@ export default function SignupPage() {
         <div>
           <h1 className="text-3xl font-bold text-slate-900">Start free in minutes</h1>
           <p className="mt-3 text-slate-600">
-            Create your SmartVendKiosk account and manage your first machines today.
+            Create your SmartVendingOS account and manage your first machines today.
           </p>
           <ul className="mt-6 space-y-3">
             {PERKS.map((p) => (

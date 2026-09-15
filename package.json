@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:check": "node check-supabase-db.mjs"
+    "db:check": "node check-supabase-db.mjs",
+    "db:migrate": "node scripts/db-migrate.mjs",
+    "db:seed": "node scripts/db-migrate.mjs 007"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",

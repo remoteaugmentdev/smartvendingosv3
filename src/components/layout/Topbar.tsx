@@ -26,7 +26,7 @@ export function Topbar() {
   const pageTitle =
     t.pages[lastSeg] ??
     t.pages[firstSeg] ??
-    'SmartVendKiosk'
+    'SmartVendingOS'
 
   function handleRefresh() {
     setRefreshing(true)

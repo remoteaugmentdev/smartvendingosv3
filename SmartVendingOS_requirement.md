@@ -1,6 +1,6 @@
-# SmartVendKiosk — VERSION 2: Full Platform SaaS Demo
+# SmartVendingOS — VERSION 2: Full Platform SaaS Demo
 ## Functionality Specification Document
-### Prepared by: Remote Augment (RA) for SmartVendKiosk.com
+### Prepared by: Remote Augment (RA) for SmartVendingOS.com
 ### Document Version: 1.0 | Purpose: UI-Only Demo — AI Code Generation Reference
 
 ---
@@ -9,14 +9,14 @@
 
 ### 1.1 What We Are Building
 
-SmartVendKiosk is a **global, hardware-agnostic, SaaS vending management platform** built by Remote Augment (RA). It targets two customer profiles:
+SmartVendingOS is a **global, hardware-agnostic, SaaS vending management platform** built by Remote Augment (RA). It targets two customer profiles:
 
 - **Vending Operators** — companies that own and service vending machines on behalf of location clients (offices, hospitals, factories, transit hubs).
 - **Self-Operators** — businesses that own machines at their own locations and manage them in-house.
 
-The benchmark product is **VendSoft** — a US-based vending management SaaS. SmartVendKiosk V2 must match VendSoft's complete feature set and surpass it in four areas:
+The benchmark product is **VendSoft** — a US-based vending management SaaS. SmartVendingOS V2 must match VendSoft's complete feature set and surpass it in four areas:
 
-| Area | VendSoft Today | SmartVendKiosk Advantage |
+| Area | VendSoft Today | SmartVendingOS Advantage |
 |---|---|---|
 | Route & Trip Management | Good map-based trips, manual entry | Optimized routes, mobile-first trip execution, real-time sync |
 | Financial Reporting | Basic P&L, expenses, cash flow | Full accounting-grade reports, multi-currency, export to accounting tools |
@@ -111,7 +111,7 @@ The benchmark product is **VendSoft** — a US-based vending management SaaS. Sm
 ### 2.4 Navigation Structure (Desktop Left Sidebar)
 
 ```
-[SVK Logo]
+[SmartVendingOS Logo]
 ─────────────────
 📊  Dashboard
 🗺️  Live Map          ← NEW vs VendSoft
@@ -175,7 +175,7 @@ Horizontal scrollable strip of 4 app screenshots with captions: Dashboard | Rout
 
 "How we compare" — side-by-side table:
 
-| Feature | Micron | VendSoft | SmartVendKiosk |
+| Feature | Micron | VendSoft | SmartVendingOS |
 |---|---|---|---|
 | Hardware-agnostic | ❌ | ✅ | ✅ |
 | Mobile field app | ❌ | ❌ | ✅ |
@@ -192,7 +192,7 @@ Show just the 3 plan names with "See all plans →" button linking to `/pricing`
 
 #### 3.1.7 Footer
 
-Links: Features | Pricing | Blog | Docs | Contact | Privacy | Terms. Copyright "© 2026 SmartVendKiosk by Remote Augment."
+Links: Features | Pricing | Blog | Docs | Contact | Privacy | Terms. Copyright "© 2026 SmartVendingOS by Remote Augment."
 
 ---
 
@@ -530,7 +530,7 @@ Right column:
 
 **PLANOGRAM TAB (core machine management screen):**
 
-This is SmartVendKiosk's answer to both Micron's slot management AND VendSoft's planogram — and it must be better than both.
+This is SmartVendingOS's answer to both Micron's slot management AND VendSoft's planogram — and it must be better than both.
 
 **Cabinet tabs:** Cabinet A | Cabinet B | Cabinet C
 **Floor/Row tabs:** Floor 1 | Floor 2 | Floor 3
@@ -1547,7 +1547,7 @@ These are the specific interactive moments that must work in the demo to make th
 
 ## 9. HOW VERSION 2 BEATS VENDSOFT (Demo Talking Points)
 
-| VendSoft Limitation | SmartVendKiosk Advantage | Where it Shows |
+| VendSoft Limitation | SmartVendingOS Advantage | Where it Shows |
 |---|---|---|
 | No live fleet map overview | Live Fleet Map with colored pins, heatmap toggle | Screen 2 |
 | Trip entry is a dense, confusing table | Clean mobile trip execution + separate cash collection screen | Mobile M2–M5 |
@@ -1564,6 +1564,6 @@ These are the specific interactive moments that must work in the demo to make th
 
 ---
 
-*Document prepared by Remote Augment (RA) — SmartVendKiosk.com*
+*Document prepared by Remote Augment (RA) — SmartVendingOS.com*
 *For internal use and AI code generation reference only.*
 *Version 1.0 — May 2026*

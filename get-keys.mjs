@@ -1,7 +1,16 @@
 import pg from 'pg';
+import path from 'path';
+import { loadEnv } from './scripts/loadEnv.mjs';
 const { Client } = pg;
 
-const connectionString = 'postgresql://postgres.thccoywskpfwfadtlbxc:SupaRemote10@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres';
+loadEnv(path.resolve(process.cwd(), '.env.local'));
+
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.error('Missing DATABASE_URL. Set it in .env.local or the environment.');
+  process.exit(1);
+}
+
 const client = new Client({ connectionString });
 
 async function run() {

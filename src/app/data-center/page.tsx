@@ -1,4 +1,3 @@
-// FILE: D:\smartvendkiosk\src\app\data-center\page.tsx
 'use client'
 
 import { useState } from 'react'

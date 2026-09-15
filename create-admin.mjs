@@ -1,9 +1,13 @@
 import pg from 'pg';
+import path from 'path';
+import { loadEnv } from './scripts/loadEnv.mjs';
 const { Client } = pg;
+
+loadEnv(path.resolve(process.cwd(), '.env.local'));
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) {
-  console.error('DATABASE_URL is not set. Run with: node --env-file=.env.local create-admin.mjs');
+  console.error('DATABASE_URL is not set. Set it in .env.local or the environment.');
   process.exit(1);
 }
 
@@ -16,7 +20,12 @@ async function run() {
     console.log('Connected!');
 
     const email = 'admin@smartvendingos.com';
-    const password = 'admin123';
+    // Password comes from the caller, never a literal: this script resets the master account.
+    const password = process.argv.find((a) => a.startsWith('--password='))?.slice('--password='.length) ?? process.env.ADMIN_PASSWORD;
+    if (!password) {
+      console.error('Missing password. Run: node create-admin.mjs --password=<value>  (or set ADMIN_PASSWORD)');
+      process.exit(1);
+    }
 
     // 1. Check if user already exists
     const check = await client.query('SELECT id FROM auth.users WHERE email = $1', [email]);
@@ -78,7 +87,6 @@ async function run() {
 
     console.log('\\n✅ SUCCESS! You can now log in with:');
     console.log('Email:    ' + email);
-    console.log('Password: ' + password);
 
   } catch (err) {
     console.error('Error:', err);

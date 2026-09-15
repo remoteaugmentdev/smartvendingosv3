@@ -1,6 +1,6 @@
-import { readFileSync, existsSync } from 'fs'
 import path from 'path'
 import pg from 'pg'
+import { loadEnv } from './scripts/loadEnv.mjs'
 
 const { Client } = pg
 
@@ -13,22 +13,9 @@ function parseArgList(argv) {
   }, {})
 }
 
-function loadDotenv(filePath) {
-  if (!existsSync(filePath)) return
-  const content = readFileSync(filePath, 'utf8')
-  for (const line of content.split(/\r?\n/)) {
-    const trimmed = line.trim()
-    if (!trimmed || trimmed.startsWith('#')) continue
-    const [key, ...rest] = trimmed.split('=')
-    if (!key) continue
-    const value = rest.join('=').trim().replace(/^"|"$/g, '')
-    if (process.env[key] === undefined) process.env[key] = value
-  }
-}
-
 const args = parseArgList(process.argv.slice(2))
 const envPath = path.resolve(process.cwd(), '.env.local')
-loadDotenv(envPath)
+loadEnv(envPath)
 
 const databaseUrl = process.env.DATABASE_URL
 if (!databaseUrl) {

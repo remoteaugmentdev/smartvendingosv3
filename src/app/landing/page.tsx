@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { MarketingShell } from '@/components/marketing/MarketingShell'
 import { Eye, Route, Sparkles, Check, X } from 'lucide-react'
 
-export const metadata = { title: 'SmartVendKiosk — The Smarter Way to Run Your Vending Business' }
+export const metadata = { title: 'SmartVendingOS: The Smarter Way to Run Your Vending Business' }
 
 const HIGHLIGHTS = [
   { Icon: Eye, title: 'Total Fleet Visibility', desc: "See every machine's inventory, revenue, and status on one live map." },
@@ -10,15 +10,15 @@ const HIGHLIGHTS = [
   { Icon: Sparkles, title: 'AI-Powered Forecasting', desc: 'Know what will run out before it does. Get restock recommendations automatically.' },
 ]
 
-const COMPARISON: { feature: string; micron: string; vendsoft: string; svk: string }[] = [
-  { feature: 'Hardware-agnostic', micron: 'no', vendsoft: 'yes', svk: 'yes' },
-  { feature: 'Mobile field app', micron: 'no', vendsoft: 'no', svk: 'yes' },
-  { feature: 'Route optimization', micron: 'no', vendsoft: 'Basic', svk: 'Advanced + AI' },
-  { feature: 'AI demand forecast', micron: 'no', vendsoft: 'no', svk: 'yes' },
-  { feature: 'Loyalty & promotions', micron: 'no', vendsoft: 'no', svk: 'yes' },
-  { feature: 'Financial reports', micron: 'no', vendsoft: 'Basic', svk: 'Full P&L + export' },
-  { feature: 'Multi-currency', micron: 'no', vendsoft: 'no', svk: 'yes' },
-  { feature: 'Pricing', micron: 'Free (limited)', vendsoft: '$99+/mo', svk: 'From $0/mo' },
+const COMPARISON: { feature: string; micron: string; vendsoft: string; svos: string }[] = [
+  { feature: 'Hardware-agnostic', micron: 'no', vendsoft: 'yes', svos: 'yes' },
+  { feature: 'Mobile field app', micron: 'no', vendsoft: 'no', svos: 'yes' },
+  { feature: 'Route optimization', micron: 'no', vendsoft: 'Basic', svos: 'Advanced + AI' },
+  { feature: 'AI demand forecast', micron: 'no', vendsoft: 'no', svos: 'yes' },
+  { feature: 'Loyalty & promotions', micron: 'no', vendsoft: 'no', svos: 'yes' },
+  { feature: 'Financial reports', micron: 'no', vendsoft: 'Basic', svos: 'Full P&L + export' },
+  { feature: 'Multi-currency', micron: 'no', vendsoft: 'no', svos: 'yes' },
+  { feature: 'Pricing', micron: 'Free (limited)', vendsoft: '$99+/mo', svos: 'From $0/mo' },
 ]
 
 function Cell({ v }: { v: string }) {
@@ -83,7 +83,7 @@ export default function LandingPage() {
                 <th className="px-3 py-3 text-left font-medium">Feature</th>
                 <th className="px-3 py-3 text-center font-medium">Micron</th>
                 <th className="px-3 py-3 text-center font-medium">VendSoft</th>
-                <th className="px-3 py-3 text-center font-semibold text-blue-600">SmartVendKiosk</th>
+                <th className="px-3 py-3 text-center font-semibold text-blue-600">SmartVendingOS</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@ export default function LandingPage() {
                   <td className="px-3 py-3 font-medium text-slate-700">{r.feature}</td>
                   <td className="px-3 py-3 text-center"><Cell v={r.micron} /></td>
                   <td className="px-3 py-3 text-center"><Cell v={r.vendsoft} /></td>
-                  <td className="px-3 py-3 text-center bg-blue-50/50"><Cell v={r.svk} /></td>
+                  <td className="px-3 py-3 text-center bg-blue-50/50"><Cell v={r.svos} /></td>
                 </tr>
               ))}
             </tbody>
