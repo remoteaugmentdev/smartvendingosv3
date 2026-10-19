@@ -5,10 +5,19 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 interface Profile {
   id: string
   email: string
-  role: 'master' | 'demo'
+  role: 'master' | 'demo' | null
   expires_at: string | null
   label: string | null
   slug: string | null
+  kind: 'user' | 'prospect'
+  operatorId: string
+  operatorSlug: string
+  operatorName: string
+  operatorRole: string
+  plan: string | null
+  readOnly: boolean
+  firstName: string | null
+  lastName: string | null
 }
 
 interface AuthContextValue {
@@ -27,8 +36,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     fetch('/api/auth/me')
       .then((r) => r.json())
-      .then(({ user }) => {
-        setUser(user ?? null)
+      .then((data) => {
+        // A user signed in with no operator selected yet: send them to pick one.
+        // UNAUTHENTICATED (and any other denial) just leaves user null, same as before.
+        if (data.denied === 'SELECT_OPERATOR') {
+          window.location.href = '/select-operator'
+          return
+        }
+        setUser(data.user ?? null)
         setLoading(false)
       })
       .catch(() => setLoading(false))

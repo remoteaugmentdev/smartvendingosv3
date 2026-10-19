@@ -31,7 +31,7 @@ export function LoginForm() {
 
     // Full load for the same reason as the demo form: AuthProvider only reads
     // the session cookie on mount, and it was just issued
-    window.location.href = data.role === 'master' ? '/admin/leads' : '/dashboard'
+    window.location.href = data.redirect
   }
 
   return (

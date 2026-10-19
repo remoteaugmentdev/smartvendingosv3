@@ -27,7 +27,7 @@ export function TourWelcome() {
     },
     {
       Icon: Map,
-      text: `${stepCount} short stops, from the live map to AI forecasting.`,
+      text: `${stepCount} short stops, covering everything the platform does.`,
     },
     {
       Icon: RotateCcw,

@@ -22,7 +22,7 @@ const TIERS: Tier[] = [
   { name: 'Starter', monthly: 29, annual: 23, subtitle: 'For small operators growing their fleet', cta: 'Start Starter Trial',
     features: ['Up to 20 machines', 'Route & trip management', 'Planogram per machine', 'Purchase orders & expenses', '3 users (Admin, Technician)', 'CSV/Excel export', 'Chat support'] },
   { name: 'Pro', monthly: 79, annual: 63, subtitle: 'The complete platform for serious operators', cta: 'Start Pro Trial', highlight: true,
-    features: ['Up to 100 machines', 'AI forecasting & recommendations', 'Anomaly detection & smart alerts', 'Promotions & loyalty program', 'Full P&L, cash flow, mileage', 'Multi-currency support', '10 users · priority support'] },
+    features: ['Up to 100 machines', 'Full P&L, cash flow, mileage', 'Multi-currency support', '10 users · priority support'] },
   { name: 'Enterprise', monthly: null, annual: null, subtitle: 'For large operations and resellers', cta: 'Contact Sales',
     features: ['Unlimited machines & users', 'White-label branding', 'Dedicated account manager', 'Custom integrations (ERP, etc.)', 'SLA 99.9% uptime', 'SSO / SAML', 'API read + write'] },
 ]

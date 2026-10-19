@@ -1,7 +1,7 @@
 import { format, isAfter, subDays } from 'date-fns'
 import { Download } from 'lucide-react'
 import { pool } from '@/utils/db'
-import { ensureLeadsTable } from '@/utils/leadsSchema'
+import { requirePlatformAdmin } from '@/server/operator'
 import { Badge } from '@/components/ui/Badge'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { LeadsChart, LeadsTable, type Lead } from './LeadsTable'
@@ -13,7 +13,6 @@ const HIGH_PRIORITY_FLEETS = ['51-200', '200+']
 
 async function getLeads(): Promise<Lead[]> {
   try {
-    await ensureLeadsTable()
     const { rows } = await pool.query(
       `SELECT id, full_name, email, company, fleet_size, pain_point, current_solution, created_at, slug, custom_message
        FROM public.leads
@@ -40,6 +39,7 @@ function bucketLast7Days(leads: Lead[]) {
 }
 
 export default async function AdminLeadsPage() {
+  await requirePlatformAdmin()
   const leads = await getLeads()
 
   const highPriorityCount = leads.filter((l) => !!l.fleet_size && HIGH_PRIORITY_FLEETS.includes(l.fleet_size)).length

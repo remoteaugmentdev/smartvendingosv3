@@ -1,16 +1,17 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { pool } from '@/utils/db'
-import { ensureLeadsTable } from '@/utils/leadsSchema'
+import { authorizePlatformAdmin } from '@/server/operator'
 
 export async function POST(request: NextRequest) {
+  const admin = await authorizePlatformAdmin()
+  if (!admin) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
+
   try {
     const { company, slug, message } = await request.json()
 
     if (!company?.trim() || !slug?.trim()) {
       return NextResponse.json({ error: 'Please fill in every field.' }, { status: 400 })
     }
-
-    await ensureLeadsTable()
 
     await pool.query(
       `INSERT INTO public.leads (company, slug, custom_message) VALUES ($1, $2, $3)

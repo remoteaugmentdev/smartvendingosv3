@@ -13,6 +13,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith('/landing') ||
     pathname.startsWith('/pricing') ||
     pathname.startsWith('/signup') ||
+    pathname.startsWith('/select-operator') ||
+    pathname.startsWith('/setup-password') ||
     pathname.startsWith('/api/auth') ||
     pathname.startsWith('/api/leads') ||
     pathname.startsWith('/_next') ||
@@ -24,9 +26,16 @@ export async function proxy(request: NextRequest) {
 
   const session = await getSessionFromRequest(request)
 
-  // Admin area is master-only; its entrance is the admin login page
-  if (pathname.startsWith('/admin') && session?.role !== 'master') {
-    return NextResponse.redirect(new URL('/admin/login', request.url))
+  // Admin area: optimistic session-presence check only (JWT verify, no DB
+  // round trip here). The authoritative platform_role/status/expiry/
+  // session_version check happens in requirePlatformAdmin() on each admin
+  // page and Server Action, since a Server Function isn't a separate route
+  // and can't be reached through the proxy matcher alone.
+  if (pathname.startsWith('/admin')) {
+    if (session?.kind !== 'user') {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+    return NextResponse.next({ request })
   }
 
   // No session → send to the landing page; the demo form is the public entrance

@@ -6,19 +6,14 @@ import {
   LayoutDashboard,
   Bot,
   Building2,
-  Package,
   Archive,
   ShoppingCart,
   Truck,
   ShoppingBag,
   Receipt,
-  BarChart3,
-  Sparkles,
-  Gift,
   Bell,
   Users,
   UsersRound,
-  Map,
   MapPin,
   Settings2,
   UserCircle,
@@ -31,22 +26,18 @@ import { useAuth } from '@/context/AuthContext'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/utils/cn'
 import { en } from '@/locales/en'
+import { can } from '@/server/policy'
 
 const NAV_ITEMS: { href: string; navKey: keyof typeof en.nav; Icon: LucideIcon }[] = [
   { href: '/dashboard',        navKey: 'dashboard',    Icon: LayoutDashboard },
-  { href: '/map',             navKey: 'map',          Icon: Map },
   { href: '/machines',        navKey: 'machines',     Icon: Bot },
   { href: '/locations',       navKey: 'locations',    Icon: Building2 },
-  { href: '/products',        navKey: 'products',     Icon: Package },
   { href: '/inventory',       navKey: 'inventory',    Icon: Archive },
   { href: '/routes',          navKey: 'routes',       Icon: MapPin },
   { href: '/trips',           navKey: 'trips',        Icon: Truck },
   { href: '/purchases',       navKey: 'purchases',    Icon: ShoppingBag },
   { href: '/orders',          navKey: 'orders',       Icon: ShoppingCart },
   { href: '/expenses',        navKey: 'expenses',     Icon: Receipt },
-  { href: '/data-center',     navKey: 'dataCenter',   Icon: BarChart3 },
-  { href: '/insights',        navKey: 'insights',     Icon: Sparkles },
-  { href: '/promotions',      navKey: 'promotions',   Icon: Gift },
   { href: '/alerts',          navKey: 'alerts',       Icon: Bell },
   { href: '/team',            navKey: 'team',         Icon: UsersRound },
   { href: '/users',           navKey: 'users',        Icon: Users },
@@ -61,9 +52,13 @@ export function Sidebar() {
   const t = en
   const prefix = user?.slug ? `/${user.slug}` : ''
 
+  const items = NAV_ITEMS.filter(({ href }) =>
+    href !== '/team' || (user ? can(user.operatorRole, 'members.admin', user.readOnly) : false)
+  )
+
   const navItems = (
     <nav className="flex flex-1 min-h-0 flex-col gap-0.5 overflow-y-auto py-3 px-2">
-      {NAV_ITEMS.map(({ href, navKey, Icon }) => {
+      {items.map(({ href, navKey, Icon }) => {
         const label = t.nav[navKey]
         const fullHref = `${prefix}${href}`
         const active = pathname === fullHref || pathname.startsWith(fullHref + '/')
@@ -107,7 +102,7 @@ export function Sidebar() {
         </div>
 
         <nav className="flex flex-1 min-h-0 flex-col gap-0.5 overflow-y-auto py-3 px-2">
-          {NAV_ITEMS.map(({ href, navKey, Icon }) => {
+          {items.map(({ href, navKey, Icon }) => {
             const label = t.nav[navKey]
             const fullHref = `${prefix}${href}`
             const active = pathname === fullHref || pathname.startsWith(fullHref + '/')

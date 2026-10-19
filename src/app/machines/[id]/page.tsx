@@ -65,7 +65,6 @@ export default function MachineDetailPage({ params }: { params: Promise<{ id: st
 
       <PageHeader title={machine.name} description={`${machine.id} · ${machine.location}`}>
         <Badge variant={statusVariant(machine.status)}>{machine.status === 'online' ? 'Online' : machine.status === 'warning' ? 'Low Stock' : 'Offline'}</Badge>
-        <Link href="/map"><Button size="sm" variant="secondary">View on Map</Button></Link>
         <Button size="sm">Edit Machine</Button>
       </PageHeader>
 

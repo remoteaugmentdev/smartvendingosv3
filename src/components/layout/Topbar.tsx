@@ -35,6 +35,12 @@ export function Topbar() {
 
   const displayName = profile?.label ?? (profile?.role === 'master' ? user?.email : null)
 
+  // Demo-mode banner: hide it on the screens that show real (non-sample) data.
+  const prefix = user?.slug ? `/${user.slug}` : ''
+  const isRealDataScreen = ['/team', '/profile'].some(
+    (p) => pathname === `${prefix}${p}` || pathname.startsWith(`${prefix}${p}/`)
+  )
+
   return (
     <header
       className="flex shrink-0 h-[var(--topbar-height)] items-center gap-4 border-b border-[var(--border)] bg-[var(--bg-card)] px-5"
@@ -52,14 +58,16 @@ export function Topbar() {
       <h1 className="text-base font-semibold text-[var(--text-primary)] shrink-0">{pageTitle}</h1>
 
       {/* Demo-data indicator */}
-      <span
-        className="hidden md:inline-flex min-w-0 shrink items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-medium text-amber-700"
-      >
-        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-        <span className="truncate">
-          Demo mode: all figures shown are sample data for demonstration only.
+      {!isRealDataScreen && (
+        <span
+          className="hidden md:inline-flex min-w-0 shrink items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-medium text-amber-700"
+        >
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+          <span className="truncate">
+            Demo mode: all figures shown are sample data for demonstration only.
+          </span>
         </span>
-      </span>
+      )}
 
       {/* Right actions */}
       <div className="flex items-center gap-2 ml-auto">

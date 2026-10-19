@@ -83,13 +83,6 @@ export const TOUR_STEPS: TourStep[] = [
 
   // ── Fleet & machines ───────────────────────────────────────────────────────
   {
-    id: 'map',
-    route: '/map',
-    target: 'main .rounded-xl',
-    title: 'Your whole fleet on a live map',
-    body: 'Every machine plotted geographically and colour-coded by health: green healthy, amber low stock, red offline. Click any pin for today’s revenue, fill level and last service. Instead of guessing routes, your team sees at a glance which machines need a visit and can plan the shortest drive to reach them.',
-  },
-  {
     id: 'machines',
     route: '/machines',
     title: 'Manage the entire fleet',
@@ -144,33 +137,6 @@ export const TOUR_STEPS: TourStep[] = [
     body: 'Per-machine controls for name, low-stock threshold, currency and tax rate, plus a safe decommission path. Every machine can behave exactly as its location demands without touching the rest of the fleet.',
   },
 
-  // ── AI insights ────────────────────────────────────────────────────────────
-  {
-    id: 'insights',
-    route: '/insights',
-    target: 'main .grid',
-    title: 'AI that works your data for you',
-    body: 'Three AI modules run continuously off your sales and inventory history: demand forecasting, restock recommendations and anomaly detection. This is the difference between reacting to empty machines and preventing them. Let’s look at each.',
-  },
-  {
-    id: 'insights-forecast',
-    route: '/insights/forecast',
-    title: 'Forecast: never run empty again',
-    body: 'Machine-by-machine predictions of what will sell out and when, across the next 7, 14 and 30 days. Empty slots are lost revenue you can never recover, so forecasting means you restock a day before the stockout, not a week after. It turns guesswork into a schedule.',
-  },
-  {
-    id: 'insights-recommendations',
-    route: '/insights/recommendations',
-    title: 'Recommendations: a ready-made load plan',
-    body: 'The forecast becomes an action list: the exact products and quantities to load into each machine on the next trip. Drivers stop over-carrying some lines and under-carrying others, so every trip refills optimally and your working capital is not tied up in stock sitting in the wrong place.',
-  },
-  {
-    id: 'insights-anomalies',
-    route: '/insights/anomalies',
-    title: 'Anomalies: problems find you',
-    body: 'Unusual patterns are flagged automatically, whether it is a sudden revenue drop, a machine that has gone quiet, or a product that stopped selling. You find out the day it happens, not when you finally review the numbers, which is often the difference between a quick fix and a month of lost sales.',
-  },
-
   // ── Routes, trips & locations ──────────────────────────────────────────────
   {
     id: 'routes',
@@ -198,12 +164,6 @@ export const TOUR_STEPS: TourStep[] = [
   },
 
   // ── Catalog & stock ────────────────────────────────────────────────────────
-  {
-    id: 'products',
-    route: '/products',
-    title: 'Products: one catalog, full margin control',
-    body: 'The master catalog of everything you sell, with cost, price, margin and stock, shared across the whole fleet. Change a price once and it is consistent everywhere, and because cost and margin sit right next to each other, you always know which lines are actually making you money.',
-  },
   {
     id: 'inventory',
     route: '/inventory',
@@ -248,21 +208,7 @@ export const TOUR_STEPS: TourStep[] = [
     title: 'Log an expense in seconds',
     body: 'Record a new cost, with category, amount and what it is tied to, and it flows straight into your P&L. Because it is captured the moment it happens, month-end is not a scramble to remember where the money went.',
   },
-  {
-    id: 'data-center',
-    route: '/data-center',
-    target: 'main .recharts-surface',
-    title: 'Data center: answers to the hard questions',
-    body: 'Deeper analytics and reporting that slice revenue and performance by machine, product, location or time period. When you want to know why last month dipped or which product-location pairings drive growth, this is where the pattern becomes obvious.',
-  },
-
   // ── Growth & operations ────────────────────────────────────────────────────
-  {
-    id: 'promotions',
-    route: '/promotions',
-    title: 'Promotions & loyalty: grow the top line',
-    body: 'Run campaigns and a customer loyalty program to lift volume on the products and machines you choose. Vending is usually a one-off, anonymous sale, so giving customers a reason to come back turns passing footfall into repeat revenue you can actually influence.',
-  },
   {
     id: 'alerts',
     route: '/alerts',
@@ -308,6 +254,6 @@ export const TOUR_STEPS: TourStep[] = [
     route: '/dashboard',
     target: 'aside nav',
     title: 'That’s the whole platform',
-    body: 'Everything you just saw lives in this sidebar, so you can jump anywhere in a click. From live map to AI forecasting to per-machine P&L, it is one connected system that replaces the spreadsheets, phone calls and guesswork most vending operations still run on. Welcome aboard!',
+    body: 'Everything you just saw lives in this sidebar, so you can jump anywhere in a click. From fleet control to per-machine P&L, it is one connected system that replaces the spreadsheets, phone calls and guesswork most vending operations still run on. Welcome aboard!',
   },
 ]

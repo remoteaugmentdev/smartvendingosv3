@@ -1,10 +1,13 @@
 import { pool } from '@/utils/db'
+import { requirePlatformAdmin } from '@/server/operator'
 
 export const dynamic = 'force-dynamic'
 
 const esc = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`
 
 export async function GET() {
+  await requirePlatformAdmin()
+
   let rows: Record<string, unknown>[] = []
   try {
     ;({ rows } = await pool.query(

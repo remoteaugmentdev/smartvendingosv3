@@ -1,21 +1,18 @@
 import Link from 'next/link'
 import { MarketingShell } from '@/components/marketing/MarketingShell'
-import { Eye, Route, Sparkles, Check, X } from 'lucide-react'
+import { Eye, Route, Check, X } from 'lucide-react'
 
 export const metadata = { title: 'SmartVendingOS: The Smarter Way to Run Your Vending Business' }
 
 const HIGHLIGHTS = [
-  { Icon: Eye, title: 'Total Fleet Visibility', desc: "See every machine's inventory, revenue, and status on one live map." },
+  { Icon: Eye, title: 'Total Fleet Visibility', desc: "See every machine's inventory, revenue, and status in one dashboard." },
   { Icon: Route, title: 'Smart Route Optimization', desc: 'Plan, assign, and execute restock trips with turn-by-turn guidance for your field team.' },
-  { Icon: Sparkles, title: 'AI-Powered Forecasting', desc: 'Know what will run out before it does. Get restock recommendations automatically.' },
 ]
 
 const COMPARISON: { feature: string; micron: string; vendsoft: string; svos: string }[] = [
   { feature: 'Hardware-agnostic', micron: 'no', vendsoft: 'yes', svos: 'yes' },
   { feature: 'Mobile field app', micron: 'no', vendsoft: 'no', svos: 'yes' },
-  { feature: 'Route optimization', micron: 'no', vendsoft: 'Basic', svos: 'Advanced + AI' },
-  { feature: 'AI demand forecast', micron: 'no', vendsoft: 'no', svos: 'yes' },
-  { feature: 'Loyalty & promotions', micron: 'no', vendsoft: 'no', svos: 'yes' },
+  { feature: 'Route optimization', micron: 'no', vendsoft: 'Basic', svos: 'Advanced' },
   { feature: 'Financial reports', micron: 'no', vendsoft: 'Basic', svos: 'Full P&L + export' },
   { feature: 'Multi-currency', micron: 'no', vendsoft: 'no', svos: 'yes' },
   { feature: 'Pricing', micron: 'Free (limited)', vendsoft: '$99+/mo', svos: 'From $0/mo' },

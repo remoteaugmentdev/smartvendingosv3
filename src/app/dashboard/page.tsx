@@ -143,13 +143,11 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
 
         {/* 1 – Gross Revenue */}
-        <Link href="/data-center" className="block">
-          <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-blue-500">
-            <p className="text-xs font-medium text-[var(--text-muted)] mb-1">Gross Revenue (MTD)</p>
-            <p className="text-xl font-bold text-[var(--text-primary)]">{fmtEur(grossRevenue)}</p>
-            <Badge variant="success" className="mt-2">+21.2%</Badge>
-          </div>
-        </Link>
+        <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] border-t-2 border-blue-500">
+          <p className="text-xs font-medium text-[var(--text-muted)] mb-1">Gross Revenue (MTD)</p>
+          <p className="text-xl font-bold text-[var(--text-primary)]">{fmtEur(grossRevenue)}</p>
+          <Badge variant="success" className="mt-2">+21.2%</Badge>
+        </div>
 
         {/* 2 – Active Machines */}
         <Link href="/machines" className="block">
@@ -161,13 +159,11 @@ export default function DashboardPage() {
         </Link>
 
         {/* 3 – Products Mapped */}
-        <Link href="/data-center" className="block">
-          <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-blue-400">
-            <p className="text-xs font-medium text-[var(--text-muted)] mb-1">Net Income (MTD)</p>
-            <p className="text-xl font-bold text-[var(--text-primary)]">{fmtEur(netIncome)}</p>
-            <Badge variant="success" className="mt-2">+18.5%</Badge>
-          </div>
-        </Link>
+        <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] border-t-2 border-blue-400">
+          <p className="text-xs font-medium text-[var(--text-muted)] mb-1">Net Income (MTD)</p>
+          <p className="text-xl font-bold text-[var(--text-primary)]">{fmtEur(netIncome)}</p>
+          <Badge variant="success" className="mt-2">+18.5%</Badge>
+        </div>
 
         {/* 4 – Pending SIRETs */}
         <Link href="/inventory" className="block">

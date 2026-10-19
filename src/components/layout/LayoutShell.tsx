@@ -21,6 +21,8 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
     pathname.startsWith('/landing') ||
     pathname.startsWith('/pricing') ||
     pathname.startsWith('/signup') ||
+    pathname.startsWith('/select-operator') ||
+    pathname.startsWith('/setup-password') ||
     pathname.startsWith('/admin') ||
     isCompanyDemoLink(pathname)
 

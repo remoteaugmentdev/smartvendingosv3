@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ArrowLeft } from 'lucide-react'
 import { pool } from '@/utils/db'
+import { requirePlatformAdmin } from '@/server/operator'
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { DemoLinkGenerator } from './DemoLinkGenerator'
@@ -32,6 +33,7 @@ async function getRecentLinks(): Promise<RecentLink[]> {
 }
 
 export default async function DemoLinkPage() {
+  await requirePlatformAdmin()
   const recentLinks = await getRecentLinks()
 
   return (

@@ -48,7 +48,6 @@ const NOTIF_ROWS = [
   ['Machine goes offline', true, true, true],
   ['Low stock alert', true, true, false],
   ['Trip completed', false, true, false],
-  ['New anomaly detected', true, true, false],
   ['Purchase received', true, true, false],
   ['Weekly summary report', true, false, false],
 ] as const

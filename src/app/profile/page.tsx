@@ -16,6 +16,7 @@ export default function ProfilePage() {
 
   const [lang, setLang] = useState<Lang>('FR')
   const [showPasswordModal, setShowPasswordModal] = useState(false)
+  const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
@@ -52,17 +53,18 @@ export default function ProfilePage() {
       setPasswordError('Passwords do not match')
       return
     }
-    if (newPassword.length < 6) {
-      setPasswordError('Password must be at least 6 characters')
+    if (newPassword.length < 8) {
+      setPasswordError('Password must be at least 8 characters')
       return
     }
     setIsSaving(true)
-    const result = await changePassword(newPassword)
+    const result = await changePassword(currentPassword, newPassword)
     setIsSaving(false)
     if (result.error) {
       setPasswordError(result.error)
       return
     }
+    setCurrentPassword('')
     setNewPassword('')
     setConfirmPassword('')
     setShowPasswordModal(false)
@@ -161,6 +163,16 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-[var(--text-muted)]">{t.oldPassword}</label>
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="h-9 w-full rounded-xl border border-[var(--border)] bg-white px-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
               <div className="space-y-1">
                 <label className="text-xs font-medium text-[var(--text-muted)]">{t.newPassword}</label>
                 <input

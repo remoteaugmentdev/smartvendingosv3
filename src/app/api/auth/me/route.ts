@@ -1,46 +1,76 @@
 import { NextResponse } from 'next/server'
-import { getSession } from '@/utils/session'
+import { cookies } from 'next/headers'
 import { pool } from '@/utils/db'
+import { COOKIE_NAME } from '@/utils/session'
+import { resolvePrincipal } from '@/server/operator'
 
 export async function GET() {
-  const session = await getSession()
-  if (!session) return NextResponse.json({ user: null })
+  const cookieStore = await cookies()
+  const token = cookieStore.get(COOKIE_NAME)?.value
+  const result = await resolvePrincipal(token)
 
-  const { rows } = await pool.query(
-    `SELECT p.role, p.expires_at, p.label, u.email, u.updated_at
-     FROM public.profiles p
-     JOIN auth.users u ON u.id = p.id
-     WHERE p.id = $1`,
-    [session.userId]
-  )
-  const profile = rows[0] ?? null
-
-  // If the account was updated after this session was issued, force re-login
-  if (profile?.updated_at && session.iat) {
-    const accountUpdatedAt = new Date(profile.updated_at).getTime()
-    const sessionIssuedAt = session.iat * 1000
-    if (accountUpdatedAt > sessionIssuedAt) {
-      return NextResponse.json({ user: null })
-    }
+  if ('denied' in result) {
+    return NextResponse.json({ denied: result.denied }, { status: 401 })
   }
 
-  let label: string | null = profile?.label ?? null
-  if (session.slug) {
-    const { rows: leadRows } = await pool.query(
-      `SELECT company FROM public.leads WHERE slug = $1`,
-      [session.slug]
+  const principal = result
+
+  if (principal.kind === 'prospect') {
+    const { rows } = await pool.query<{ company: string | null }>(
+      `SELECT company FROM public.leads WHERE id = $1`,
+      [principal.leadId]
     )
-    if (leadRows[0]?.company) label = leadRows[0].company
+    const lead = rows[0]
+    return NextResponse.json({
+      user: {
+        id: principal.leadId,
+        email: '',
+        role: null,
+        expires_at: null,
+        label: lead?.company ?? null,
+        slug: principal.slug ?? null,
+        kind: principal.kind,
+        operatorId: principal.operatorId,
+        operatorSlug: principal.operatorSlug,
+        operatorName: principal.operatorName,
+        operatorRole: principal.role,
+        plan: principal.plan,
+        readOnly: principal.readOnly,
+        firstName: null,
+        lastName: null,
+      },
+    })
   }
+
+  const { rows } = await pool.query<{
+    email: string
+    label: string | null
+    expires_at: string | null
+    first_name: string | null
+    last_name: string | null
+  }>(
+    `SELECT email, label, expires_at, first_name, last_name FROM public.users WHERE id = $1`,
+    [principal.userId]
+  )
+  const user = rows[0]
 
   return NextResponse.json({
     user: {
-      id: session.userId,
-      email: profile?.email ?? session.email,
-      role: profile?.role ?? session.role,
-      expires_at: profile?.expires_at ?? null,
-      label,
-      slug: session.slug ?? null,
+      id: principal.userId,
+      email: user?.email ?? '',
+      role: principal.platformRole,
+      expires_at: user?.expires_at ?? null,
+      label: user?.label ?? null,
+      slug: null,
+      kind: principal.kind,
+      operatorId: principal.operatorId,
+      operatorSlug: principal.operatorSlug,
+      operatorName: principal.operatorName,
+      operatorRole: principal.role,
+      plan: principal.plan,
+      readOnly: principal.readOnly,
+      firstName: user?.first_name ?? null,
+      lastName: user?.last_name ?? null,
     },
   })
 }

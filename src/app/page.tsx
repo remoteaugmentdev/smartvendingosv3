@@ -13,7 +13,6 @@ const FEATURE_GROUPS = [
     label: 'Operate',
     items: [
       { title: 'Executive dashboard', desc: 'revenue and top products at a glance' },
-      { title: 'Live fleet map', desc: 'real-time status and revenue' },
       { title: 'Machines & planogram', desc: 'slot-level stock and expiry' },
       { title: 'Routes & trips', desc: 'optimized restock trips' },
     ],
@@ -21,9 +20,8 @@ const FEATURE_GROUPS = [
   {
     label: 'Grow',
     items: [
-      { title: 'AI insights', desc: 'forecasting and anomaly detection' },
       { title: 'Financials & reporting', desc: 'P&L and multi-currency reports' },
-      { title: 'Promotions, loyalty & team', desc: 'campaigns, loyalty and roles' },
+      { title: 'Team & roles', desc: 'delegate with the right access' },
     ],
   },
 ]
@@ -80,7 +78,8 @@ export default async function HomePage({
   // different company's link shouldn't trigger it). Falls back to the DB
   // record so a signed-out returning visitor still skips the form.
   const session = slug ? await getSession() : null
-  const filledThisSlug = Boolean(slug) && (session?.slug === slug || alreadyFilled)
+  const filledThisSlug =
+    Boolean(slug) && ((session?.kind === 'prospect' && session.slug === slug) || alreadyFilled)
 
   return (
     <div

@@ -2,14 +2,13 @@
 
 import { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { Map, Sparkles, Wallet, RotateCcw, ChevronRight } from 'lucide-react'
+import { Map, Wallet, RotateCcw, ChevronRight } from 'lucide-react'
 import { useTour } from '@/context/TourContext'
 import { Button } from '@/components/ui/Button'
 import { parseCompanyRoute } from '@/utils/companyLink'
 
 const HIGHLIGHTS = [
-  { Icon: Map, text: 'A live map and full control of every machine' },
-  { Icon: Sparkles, text: 'AI that forecasts demand and plans your restocks' },
+  { Icon: Map, text: 'Full control of every machine, route and trip' },
   { Icon: Wallet, text: 'Real profit visibility, per machine and per route' },
 ]
 

@@ -11,10 +11,6 @@ const FEATURES = [
     desc: 'Gross revenue, net income, top products & locations at a glance',
   },
   {
-    title: 'Live fleet map',
-    desc: "Every machine's status, inventory and revenue on one real-time map",
-  },
-  {
     title: 'Machines & visual planogram',
     desc: 'Slot-level stock, prices and expiry across machines and warehouses',
   },
@@ -23,16 +19,12 @@ const FEATURES = [
     desc: 'One-click optimized restock routes with map-based trip planning and results entry',
   },
   {
-    title: 'AI insights',
-    desc: 'Demand forecasting, restock recommendations and anomaly detection',
-  },
-  {
     title: 'Financials & reporting',
     desc: 'P&L, cash flow, expenses, purchases and multi-currency reporting',
   },
   {
-    title: 'Promotions, loyalty & team',
-    desc: 'Discount campaigns, a customer loyalty program and role-based team access',
+    title: 'Team access',
+    desc: 'Role-based team access across the whole platform',
   },
 ]
 

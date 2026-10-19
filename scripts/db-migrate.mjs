@@ -49,9 +49,20 @@ if (files.length === 0) {
   process.exit(1)
 }
 
+// ponytail: same host-based TLS rule as src/utils/db.ts, kept in sync manually
+// since this script runs standalone (no bundler) and can't import app code.
+function isLocalHost(connectionString) {
+  if (!connectionString) return false
+  try {
+    return ['localhost', '127.0.0.1'].includes(new URL(connectionString).hostname)
+  } catch {
+    return false
+  }
+}
+
 const pool = new pg.Pool({
   connectionString: DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: isLocalHost(DATABASE_URL) ? false : { rejectUnauthorized: false },
   max: 10,
 })
 
